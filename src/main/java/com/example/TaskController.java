@@ -24,7 +24,7 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{id}")
-    public Task get(@PathVariable String id) {
+    public Task get(@PathVariable("id") String id) {
         Task task = mock.get(id);
         if (task == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return task;
