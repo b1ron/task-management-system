@@ -1,0 +1,10 @@
+# Ignore target directory (compiled files and build artifacts)
+target/
+
+# Ignore compiled test files
+test-classes/
+
+# Ignore dependency directories and wrapper
+.mvn/
+**/mvnw
+**/mvnw.cmd
