@@ -8,3 +8,5 @@ test-classes/
 .mvn/
 **/mvnw
 **/mvnw.cmd
+
+.vscode/
