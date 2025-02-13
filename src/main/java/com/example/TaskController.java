@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class TaskController {
 
     private Map<String, Task> mock = new HashMap<String, Task>() {{
-        put("1", new Task("1", "1", "P1", false));
-        put("2", new Task("2", "2", "P2", false));
+        put("1", new Task("1", "some random issue x", "P1", false));
+        put("2", new Task("2", "some random issue y", "P2", false));
     }};
 
     @GetMapping("/")
