@@ -8,7 +8,7 @@ public class Task {
 
     @Id  // Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-increment ID
-    private Long id;
+    private String id;
 
     @Column(nullable = false)  // Maps to "title" column, cannot be null
     private String title;
@@ -20,15 +20,16 @@ public class Task {
     public Task() {}
 
     // Constructor
-    public Task(String title, String priority, boolean completed) {
+    public Task(String id, String title, String priority, boolean completed) {
+        this.id = id;
         this.title = title;
         this.priority = priority;
         this.completed = completed;
     }
 
     // Getters & Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
