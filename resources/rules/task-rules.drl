@@ -1,0 +1,8 @@
+package com.example.rules;
+
+rule "High Priority Task"
+when
+    $task : Task(priority == "P1", completed == false)
+then
+    System.out.println("Assigning high priority task: " + $task.getTitle());
+end
