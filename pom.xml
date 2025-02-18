@@ -19,7 +19,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Spring Boot & PostgreSQL Dependencies -->
+    <!-- Spring Boot & PostgreSQL dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -50,4 +50,14 @@
       <version>8.39.0.Final</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>3.4.2</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>
