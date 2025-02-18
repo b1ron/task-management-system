@@ -3,26 +3,30 @@ package com.example.controller;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.model.Task;
+import com.example.repository.TaskRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class TaskController {
 
-    private Map<String, Task> mock = new HashMap<String, Task>() {{
-        put("1", new Task("1", "A", "HIGH", false));
-        put("2", new Task("2", "B", "LOW", false));
-    }};
+    private final TaskRepository taskRepository;
+
+    public TaskController(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     @GetMapping("/")
     public void root() {
@@ -31,27 +35,27 @@ public class TaskController {
 
     @GetMapping("/tasks")
     public Collection<Task> get() {
-        return mock.values();
+        return taskRepository.findAll();
     }
 
     @GetMapping("/tasks/{id}")
     public Task get(@PathVariable("id") String id) {
-        Task task = mock.get(id);
-        if (task == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return task;
+        Optional<Task> task = taskRepository.findById(id);
+        if (!task.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return task.get();
     }
 
     @DeleteMapping("/tasks/{id}")
     public void delete(@PathVariable("id") String id) {
-        Task task = mock.remove(id);
-        if (task == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        if (!taskRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        taskRepository.deleteById(id);
     }
 
-    @PutMapping("/tasks/")
-    public Task create(Task task) {
-        task.setId(UUID.randomUUID().toString());
-        mock.put(task.getId(), task);
-        return task;
+    @PostMapping("/tasks")
+    public void create(@RequestBody Task task) {
+        taskRepository.save(task);
     }
 
 }

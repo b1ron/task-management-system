@@ -1,14 +1,19 @@
 package com.example.model;
 
+import java.util.UUID;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import jakarta.persistence.*;
 
 @Entity  // Marks this class as a JPA entity
 @Table(name = "tasks")  // Optional: Specifies the table name
 public class Task {
 
-    @Id  // Primary Key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-increment ID
-    private String id;
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;  // Auto-generated String ID
 
     @Column(nullable = false)  // Maps to "title" column, cannot be null
     private String title;
@@ -17,7 +22,9 @@ public class Task {
     private boolean completed;
 
     // Default Constructor (Required by JPA)
-    public Task() {}
+    public Task() {
+        this.id = UUID.randomUUID().toString();  // Generate UUID if not using Hibernate's generator
+    }
 
     // Constructor
     public Task(String id, String title, String priority, boolean completed) {
