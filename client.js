@@ -1,6 +1,6 @@
 (async function createTask() {
     let task = { title: 'C', priority: 'HIGH', completed: false };
-    await fetch('http://localhost:8080/tasks/', {
+    await fetch('http://localhost:8080/tasks', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
