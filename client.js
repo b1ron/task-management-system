@@ -28,4 +28,4 @@
             'Content-Type': 'application/json',
         },
     })
-})(2); // 200
+})(2); // 404
