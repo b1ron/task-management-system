@@ -22,13 +22,11 @@ public class Task {
     private boolean completed;
 
     // Default Constructor (Required by JPA)
-    public Task() {
-        this.id = UUID.randomUUID().toString();  // Generate UUID if not using Hibernate's generator
-    }
+    public Task() {}
 
     // Constructor
-    public Task(String id, String title, String priority, boolean completed) {
-        this.id = id;
+    public Task(String title, String priority, boolean completed) {
+        this.id = UUID.randomUUID().toString();  // Generate UUID if not using Hibernate's generator
         this.title = title;
         this.priority = priority;
         this.completed = completed;
