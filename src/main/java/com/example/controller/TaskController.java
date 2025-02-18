@@ -1,10 +1,7 @@
 package com.example.controller;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -30,7 +27,7 @@ public class TaskController {
 
     @GetMapping("/")
     public void root() {
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        taskRepository.findAll();
     }
 
     @GetMapping("/tasks")
