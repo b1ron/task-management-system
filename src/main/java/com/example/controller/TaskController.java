@@ -1,4 +1,4 @@
-package com.example;
+package com.example.controller;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -7,6 +7,9 @@ import java.util.UUID;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.example.model.Task;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +20,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class TaskController {
 
     private Map<String, Task> mock = new HashMap<String, Task>() {{
-        put("1", new Task("1", "some random issue x", "P1", false));
-        put("2", new Task("2", "some random issue y", "P2", false));
+        put("1", new Task("1", "A", "HIGH", false));
+        put("2", new Task("2", "B", "LOW", false));
     }};
 
     @GetMapping("/")

@@ -10,3 +10,6 @@ test-classes/
 **/mvnw.cmd
 
 .vscode/
+
+# ingore personal notes
+notes.md

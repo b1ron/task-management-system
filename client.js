@@ -1,5 +1,5 @@
 (async function createTask() {
-    let task = { title: 'some low priority issue', priority: 'P4', completed: false };
+    let task = { title: 'some low priority issue', priority: 'HIGH', completed: false };
     await fetch('http://localhost:8080/tasks/', {
         method: 'POST',
         headers: {
