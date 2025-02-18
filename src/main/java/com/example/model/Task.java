@@ -26,7 +26,6 @@ public class Task {
 
     // Constructor
     public Task(String title, String priority, boolean completed) {
-        this.id = UUID.randomUUID().toString();  // Generate UUID if not using Hibernate's generator
         this.title = title;
         this.priority = priority;
         this.completed = completed;
