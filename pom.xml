@@ -8,7 +8,7 @@
   <name>task-manager</name>
   <url>http://maven.apache.org</url>
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source> <!-- the maven compiler plugin defaults to an older version which causes a compilation failure 1.5 -->
+    <maven.compiler.source>1.8</maven.compiler.source> <!-- the maven compiler plugin defaults to an older version (1.5) which causes a compilation failure -->
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   <dependencies>
