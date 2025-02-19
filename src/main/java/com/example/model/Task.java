@@ -1,7 +1,5 @@
 package com.example.model;
 
-import java.util.UUID;
-
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
