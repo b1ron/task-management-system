@@ -35,12 +35,11 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public boolean deleteTask(String id) {
-        if (taskRepository.existsById(id)) {
-            taskRepository.deleteById(id);
-            return true;
+    public void deleteTask(String id) throws TaskNotFoundException {
+        if (!taskRepository.existsById(id)) {
+            throw new TaskNotFoundException(id);
         }
-        return false;
+        taskRepository.deleteById(id);
     }
 
 }

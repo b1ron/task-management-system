@@ -36,12 +36,8 @@ public class TaskController {
     }
 
     @DeleteMapping("/tasks/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable("id") String id) {
-        if (!taskService.deleteTask(id)) {
-            throw new TaskNotFoundException(id);
-        }
+    public void deleteTask(@PathVariable("id") String id) {
         taskService.deleteTask(id);
-        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/tasks")
