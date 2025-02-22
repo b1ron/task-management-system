@@ -1,15 +1,14 @@
 package com.example.controller;
 
 import java.util.Collection;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
-
 import com.example.exception.TaskNotFoundException;
 import com.example.model.Task;
-import com.example.repository.TaskRepository;
+import com.example.service.TaskService;
 
+import org.apache.catalina.connector.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,44 +21,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 public class TaskController {
 
-    private final TaskRepository taskRepository;
+    @Autowired
+    private TaskService taskService;
 
-    public TaskController(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
-
-    @GetMapping("/")
-    public void root() {
-        taskRepository.findAll();
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @GetMapping("/tasks")
-    public Collection<Task> get() {
-        return taskRepository.findAll();
+    public Collection<Task> getAllTasks() {
+        return taskService.getAllTasks();
     }
 
     @GetMapping("/tasks/{id}")
-    public Task get(@PathVariable("id") String id) {
-        return taskRepository.findById(id)
-            .orElseThrow(() -> new TaskNotFoundException(id));
-    }
-
-    @ExceptionHandler(TaskNotFoundException.class)
-    public ResponseEntity<String> handleTaskNotFound(TaskNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Task> getTaskById(@PathVariable("id") String id) {
+        return ResponseEntity.ok(taskService.getTaskById(id)); // Exception handled globally
     }
 
     @DeleteMapping("/tasks/{id}")
-    public void delete(@PathVariable("id") String id) {
-        if (!taskRepository.existsById(id)) {
+    public ResponseEntity<Void> deleteTask(@PathVariable("id") String id) {
+        if (!taskService.deleteTask(id)) {
             throw new TaskNotFoundException(id);
         }
-        taskRepository.deleteById(id);
+        taskService.deleteTask(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/tasks")
     public void create(@RequestBody Task task) {
-        taskRepository.save(task);
+        taskService.createTask(task);
     }
 
 }
