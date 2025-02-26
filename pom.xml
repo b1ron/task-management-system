@@ -21,6 +21,17 @@
   </properties>
 
   <dependencies>
+
+    // FIXME: blocker
+
+            <!-- KIE (Knowledge Is Everything) -->
+    <dependency>
+      <groupId>org.kie</groupId>
+      <artifactId>kie-spring</artifactId>
+      <version>8.42.0.Final</version>      <!-- Updated to a valid version -->
+    </dependency>
+
+
     <!-- Spring Boot Core -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -63,8 +74,6 @@
       <artifactId>drools-compiler</artifactId>
       <version>8.42.0.Final</version>
     </dependency>
-
-    <!-- KIE (Knowledge Is Everything) -->
 
   </dependencies>
 
