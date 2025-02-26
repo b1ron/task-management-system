@@ -18,6 +18,7 @@ public class Task {
 
     private String priority;
     private boolean completed;
+    private boolean requiresApproval;
 
     // Default Constructor (Required by JPA)
     public Task() {
@@ -29,6 +30,7 @@ public class Task {
         this.title = title;
         this.priority = priority;
         this.completed = completed;
+        this.requiresApproval = false;
     }
 
     // Getters & Setters
@@ -54,6 +56,14 @@ public class Task {
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public boolean isRquiresApproval() {
+        return requiresApproval;
+    }
+
+    public void setPriority(boolean requiresApproval) {
+        this.requiresApproval = requiresApproval;
     }
 
     public boolean isCompleted() {

@@ -3,7 +3,6 @@ package com.example.controller;
 import java.util.Collection;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.example.exception.TaskNotFoundException;
 import com.example.model.Task;
 import com.example.service.TaskService;
 
