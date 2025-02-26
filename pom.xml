@@ -24,7 +24,7 @@
 
     // FIXME: blocker
 
-            <!-- KIE (Knowledge Is Everything) -->
+          <!-- KIE (Knowledge Is Everything) -->
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-spring</artifactId>
