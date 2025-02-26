@@ -12,3 +12,5 @@ public class DroolsConfig {
         return KieServices.Factory.get().getKieClasspathContainer();
     }
 }
+
+//
